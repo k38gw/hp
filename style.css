@@ -51,7 +51,7 @@ a:hover {
 
 /* ホームリンク */
 .home-link a {
-  font-size: 0.95em;   /* 小さめ */
+  font-size: 1.0em;   /* 小さめ */
 }
 
 /* スマホ向け微調整 */
