@@ -49,6 +49,12 @@ a:hover {
   margin-top: -4px; /* h3 との距離を少し詰める */
 }
 
+/* ホームリンク */
+.home-link a {
+  font-size: 0.85em;   /* 小さめ */
+  color: #666;         /* 控えめな色にするなら */
+}
+
 /* スマホ向け微調整 */
 @media (max-width: 600px) {
   body {
