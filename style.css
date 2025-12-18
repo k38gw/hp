@@ -15,7 +15,7 @@ body {
   margin: 0;
 }
 
-/* 見出し（works.html などで使う） */
+/* 見出し */
 h3 {
   text-align: center;
   margin-bottom: 20px;
@@ -40,6 +40,13 @@ a {
 
 a:hover {
   opacity: 0.7;
+}
+
+/* サブタイトル */
+.subtitle {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: -4px; /* h3 との距離を少し詰める */
 }
 
 /* スマホ向け微調整 */
