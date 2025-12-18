@@ -9,19 +9,19 @@
   <!-- 共通スタイル -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- about me 専用の最小限スタイル -->
+  <!-- about me 専用スタイル -->
   <style>
     .profile {
-      max-width: 420px;      /* files と同じ細身の幅 */
+      max-width: 420px;      /* files と同じ細身レイアウト */
       margin: 1.5rem auto;
       padding: 0.5rem;
       text-align: left;
-      line-height: 1.1;      /* files の密度に寄せる */
+      line-height: 1.05;     /* files と同じ密度 */
     }
 
     .row {
       display: flex;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem; /* 行間を詰めて統一 */
     }
 
     .label {
@@ -31,6 +31,11 @@
 
     .value {
       flex: 1;
+    }
+
+    .profile a {
+      margin: 0;             /* 行の高さずれを防ぐ */
+      font-size: 1em;        /* files のリンクと同じ大きさ */
     }
   </style>
 </head>
