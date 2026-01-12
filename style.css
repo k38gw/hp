@@ -56,11 +56,11 @@ a:hover {
 
 .floating-home {
   position: fixed;
-  right: 12px;       /* ← 右下に固定 */
-  bottom: 10px;      /* ← キャプションと干渉しない下限ライン */
-  background: rgba(0,0,0,0.40); /* ← 薄めで上品 */
+  left: 12px;        /* ← 左上に固定 */
+  top: 12px;         /* ← 画面端から少し余白 */
+  background: rgba(0,0,0,0.40);
   color: #fff;
-  padding: 6px 12px; /* ← 小さめだけど押しやすい */
+  padding: 6px 12px;
   border-radius: 14px;
   font-size: 0.8rem;
   text-decoration: none;
