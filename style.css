@@ -57,7 +57,7 @@ a:hover {
 .floating-home {
   position: fixed;
   left: 50%;
-  bottom: 18px;
+  bottom: 10px;          /* ← ここを下げるだけで干渉が減る */
   transform: translateX(-50%);
   background: rgba(0,0,0,0.55);
   color: #fff;
