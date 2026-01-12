@@ -56,13 +56,14 @@ a:hover {
 
 .floating-home {
   position: fixed;
-  right: 16px;      /* ← 左下にしたいなら left:16px に変更 */
-  bottom: 16px;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
   background: rgba(0,0,0,0.55);
   color: #fff;
-  padding: 10px 14px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 6px 12px;     /* ← 小さめだけど押しやすい */
+  border-radius: 14px;   /* ← 角丸も控えめに */
+  font-size: 0.8rem;     /* ← 小さめの文字 */
   text-decoration: none;
   z-index: 1200;
   backdrop-filter: blur(4px);
