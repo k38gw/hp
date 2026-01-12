@@ -311,18 +311,51 @@
     showImage();
   });
 
-  /* --- ここに存在していた「スワイプ操作」の touchstart/touchend は削除しました --- */
+/* --- スワイプ操作（最小構成・誤動作しにくい） --- */
+let startX = 0;
+let startY = 0;
+let isSwiping = false;
+
+lightboxImg.addEventListener("touchstart", (e) => {
+  if (e.touches.length !== 1) return; // 2本指などは無視
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  isSwiping = true;
+});
+
+lightboxImg.addEventListener("touchmove", (e) => {
+  if (!isSwiping) return;
+
+  const dx = e.touches[0].clientX - startX;
+  const dy = e.touches[0].clientY - startY;
+
+  // 縦方向の動きが大きい → スクロールと判断してキャンセル
+  if (Math.abs(dy) > Math.abs(dx)) {
+    isSwiping = false;
+  }
+});
+
+lightboxImg.addEventListener("touchend", (e) => {
+  if (!isSwiping) return;
+
+  const dx = e.changedTouches[0].clientX - startX;
+
+  const threshold = 50; // スワイプ判定の最小距離（誤動作防止）
+
+  if (dx > threshold) {
+    // → 右スワイプ（前の画像）
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  } else if (dx < -threshold) {
+    // → 左スワイプ（次の画像）
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  }
+
+  isSwiping = false;
+});
+  
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
