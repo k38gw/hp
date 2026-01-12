@@ -56,7 +56,7 @@ a:hover {
 
 .floating-home {
   position: fixed;
-  left: 12px;        /* ← 左下に固定 */
+  right: 12px;       /* ← 右下に固定 */
   bottom: 10px;      /* ← キャプションと干渉しない下限ライン */
   background: rgba(0,0,0,0.40); /* ← 薄めで上品 */
   color: #fff;
