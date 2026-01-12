@@ -56,13 +56,13 @@ a:hover {
 
 .floating-home {
   position: fixed;
-  left: 6px;      /* ← ほぼ限界まで左へ */
-  top: 6px;       /* ← ほぼ限界まで上へ */
-  background: rgba(0,0,0,0.35); /* ← さらに薄めで上品 */
+  left: 6px;      /* ← ぎりぎりまで左上へ */
+  top: 6px;
+  background: rgba(0,0,0,0.35); /* ← 薄めで上品 */
   color: #fff;
-  padding: 5px 10px;  /* ← 小さめだけど押しやすい最小ライン */
+  padding: 5px 10px;  /* ← 小さめだけど押しやすい */
   border-radius: 12px;
-  font-size: 0.78rem;
+  font-size: 0.9rem;  /* ← 記号が潰れない最小ライン */
   text-decoration: none;
   z-index: 1200;
   backdrop-filter: blur(4px);
