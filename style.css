@@ -33,9 +33,9 @@ img {
 a {
   color: #333;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.0em;
   display: inline-block;
-  margin: 12px 0;
+  margin: 10px 0;
 }
 
 a:hover {
@@ -45,7 +45,7 @@ a:hover {
 /* サイトタイトル */
 .site-title {
     text-align: center;
-    font-size: 1.1em;        /* 控えめなサイズ */
+    font-size: 0.85em;        /* 控えめなサイズ */
     font-weight: 400;        /* 軽めで上品 */
     letter-spacing: 0.03em;  /* 少しだけ広げると綺麗 */
     margin: 6px 0 18px;      /* 上を詰めて、下を広げる */
