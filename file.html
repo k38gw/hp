@@ -84,10 +84,16 @@
   padding-top: 0.35rem;
   font-size: 0.78rem;
   color: #666;
+
+  /* 表と同じ幅・同じ位置に揃える */
+  width: 100%;
   max-width: 420px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1em;   /* ← 全角1文字分のインデント */
+
+  /* インデント */
+  padding-left: 1em;
+  text-align: left;   /* ← これが重要 */
 }
 
 .home-link-wrapper {
