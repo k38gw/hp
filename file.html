@@ -84,16 +84,19 @@
   padding-top: 0.35rem;
   font-size: 0.78rem;
   color: #666;
-
-  /* 表と同じ幅・同じ位置に揃える */
   width: 100%;
   max-width: 420px;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+  padding-left: 3em;   /* 通常 */
+}
 
-  /* インデント */
-  padding-left: 3em;
-  text-align: left;   /* ← これが重要 */
+/* 420px より狭い画面ではインデントを弱める */
+@media (max-width: 420px) {
+  .table-note {
+    padding-left: 1em;
+  }
 }
 
 .home-link-wrapper {
