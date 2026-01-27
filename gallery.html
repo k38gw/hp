@@ -88,15 +88,25 @@
   overflow-y: auto;
 }
 
-/* --- 横画面：キャプションを重ねず、画像の高さを調整 --- */
-@media (orientation: landscape) {
+/* 横画面：高さが十分ある場合（例：min-height 500px 以上） */
+@media (orientation: landscape) and (min-height: 500px) {
   #lightbox-img {
     max-height: calc(100dvh - 12vh);
   }
-
   #lightbox-caption {
     max-height: 12vh;
-    margin-top: 0; /* ← これが決定打 */
+    margin-top: 10px; /* ← 普通の余白でOK */
+  }
+}
+
+/* 横画面：高さが小さい場合（iPhone 横画面など） */
+@media (orientation: landscape) and (max-height: 499px) {
+  #lightbox-img {
+    max-height: calc(100dvh - 10vh);
+  }
+  #lightbox-caption {
+    max-height: 10vh;
+    margin-top: 4px; /* ← 少しだけ余白を減らす */
   }
 }
 
@@ -136,7 +146,7 @@
     padding: 8px 10px;
   }
 }
-    
+
 </style>
 
 </head>
@@ -796,5 +806,6 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
