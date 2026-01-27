@@ -11,18 +11,18 @@
   <!-- 共通CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Gallery専用CSS（ギャラリー・ライトボックス） -->
-    <style>
-    /* --- ギャラリー --- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-bottom: 30px;
-    }
+<!-- Gallery専用CSS（ギャラリー・ライトボックス） -->
+<style>
+  /* --- ギャラリー --- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 30px;
+}
 
 .gallery figure {
-  height: auto; /* ← ここを変更！ */
+  height: auto;
   display: flex;
   flex-direction: column;
   padding: 8px;
@@ -35,9 +35,9 @@
 }
 
 .gallery img {
-  width: 96%; /* ← 100% → 96% にするだけ */ 
+  width: 96%;
   margin: 0 auto;
-  height: auto; /* ← ここが重要！ */
+  height: auto;
   object-fit: contain;
   display: block;
 }
@@ -52,114 +52,90 @@
   white-space: nowrap;
 }
 
-    /* --- ライトボックス --- */
-    #lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
+/* --- ライトボックス --- */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
-  #lightbox-content {
-    max-width: 90vw;
-    max-height: 100dvh; /* ← これが決定打 */
-    text-align: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+#lightbox-content {
+  max-width: 90vw;
+  max-height: 100dvh;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
+/* 画像（縦画面・横画面共通） */
+#lightbox-img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* キャプション（縦画面・横画面共通） */
+#lightbox-caption {
+  color: white;
+  margin-top: 10px;
+  font-size: 1em;
+  overflow-y: auto;
+}
+
+/* --- 横画面：キャプションを重ねず、画像の高さを調整 --- */
+@media (orientation: landscape) {
   #lightbox-img {
-    max-width: 100%;
-    max-height: 100dvh; /* ← 実際の表示領域にフィット */
-    object-fit: contain;
+    max-height: calc(100dvh - 12vh); /* ← キャプション分だけ引く */
   }
 
-    #lightbox-caption {
-      color: white;
-      margin-top: 10px;
-      font-size: 1em;
-      max-height: 10vh; /* ← キャプションの高さを確保 */
-      overflow-y: auto; /* ← 長い場合はスクロール */
-    }
+  #lightbox-caption {
+    max-height: 12vh; /* ← キャプションの高さを確保 */
+  }
+}
 
-    /* --- 矢印（画面左右に固定） --- */
-    .nav-btn {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.45);
-      border: none;
-      color: white;
-      font-size: 2.2rem;
-      cursor: pointer;
-      padding: 10px 14px;
-      border-radius: 50%;
-      user-select: none;
-      z-index: 1000;
-    }
+/* --- 縦画面：従来通りの最大高さ --- */
+@media (orientation: portrait) {
+  #lightbox-img {
+    max-height: 88vh;
+  }
 
-    #prev-btn {
-      left: 20px;
-    }
+  #lightbox-caption {
+    max-height: 10vh;
+  }
+}
 
-    #next-btn {
-      right: 20px;
-    }
+/* --- 矢印 --- */
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 1000;
+}
 
-    @media (max-width: 600px) {
-      .nav-btn {
-        font-size: 1.8rem;
-        padding: 8px 10px;
-      }
-    }
+#prev-btn { left: 20px; }
+#next-btn { right: 20px; }
 
-    @media (max-width: 600px) and (orientation: portrait) {
-      #lightbox-img {
-      width: auto;
-      height: auto;
-      max-height: 88vh;   /* ← 上限だけ指定する（固定しない） */
-      max-width: 100%;
-      object-fit: contain; /* ← 比率を絶対に守る */
-      }
-    }
-
-      /* 横画面で高さが十分ある場合（例：600px以上） */
-    @media (orientation: landscape) and (min-height: 600px) {
-      #lightbox-caption {
-      position: static;
-      background: none;
-      margin-top: 10px;
-      max-height: 20vh;
-      overflow-y: auto;
-    }
-
-    #lightbox-content {
-      justify-content: center;
-      }
-    }
-
-    /* 横画面で高さが小さい場合（iPhone 横画面など） */
-    @media (orientation: landscape) and (max-height: 599px) {
-      #lightbox-caption {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      margin: 0;
-      padding: 4px 0;
-      max-height: none;
-      overflow: visible;
-      }
-    }
-      
+@media (max-width: 600px) {
+  .nav-btn {
+    font-size: 1.8rem;
+    padding: 8px 10px;
+  }
+}
+    
 </style>
 
 </head>
@@ -819,3 +795,4 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
