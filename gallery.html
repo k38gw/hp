@@ -666,12 +666,17 @@
     caption.textContent = cap ? cap.textContent : "";
 
     lightbox.style.display = "flex";
+    
+    /* 背景スクロール禁止 */
+    document.body.style.overflow = "hidden";
   }
 
   /* 背景クリックで閉じる（矢印や画像では閉じない） */
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
       lightbox.style.display = "none";
+    /* 背景スクロール解除 */
+    document.body.style.overflow = "";
     }
   });
 
@@ -689,6 +694,7 @@
     }
     if (e.key === "Escape") {
       lightbox.style.display = "none";
+      document.body.style.overflow = "";
     }
   });
 
@@ -760,8 +766,3 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
-
-
-
-
-
