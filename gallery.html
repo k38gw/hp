@@ -120,15 +120,45 @@
       }
     }
 
-@media (max-width: 600px) and (orientation: portrait) {
-  #lightbox-img {
-    width: auto;
-    height: auto;
-    max-height: 88vh;   /* ← 上限だけ指定する（固定しない） */
-    max-width: 100%;
-    object-fit: contain; /* ← 比率を絶対に守る */
-  }
-}
+    @media (max-width: 600px) and (orientation: portrait) {
+      #lightbox-img {
+      width: auto;
+      height: auto;
+      max-height: 88vh;   /* ← 上限だけ指定する（固定しない） */
+      max-width: 100%;
+      object-fit: contain; /* ← 比率を絶対に守る */
+      }
+    }
+
+      /* 横画面で高さが十分ある場合（例：600px以上） */
+    @media (orientation: landscape) and (min-height: 600px) {
+      #lightbox-caption {
+      position: static;
+      background: none;
+      margin-top: 10px;
+      max-height: 20vh;
+      overflow-y: auto;
+    }
+
+    #lightbox-content {
+      justify-content: center;
+      }
+    }
+
+    /* 横画面で高さが小さい場合（iPhone 横画面など） */
+    @media (orientation: landscape) and (max-height: 599px) {
+      #lightbox-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      margin: 0;
+      padding: 4px 0;
+      max-height: none;
+      overflow: visible;
+      }
+    }
       
 </style>
 
@@ -789,9 +819,3 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
-
-
-
-
-
-
