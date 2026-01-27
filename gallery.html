@@ -91,11 +91,12 @@
 /* --- 横画面：キャプションを重ねず、画像の高さを調整 --- */
 @media (orientation: landscape) {
   #lightbox-img {
-    max-height: calc(100dvh - 12vh); /* ← キャプション分だけ引く */
+    max-height: calc(100dvh - 12vh);
   }
 
   #lightbox-caption {
-    max-height: 12vh; /* ← キャプションの高さを確保 */
+    max-height: 12vh;
+    margin-top: 0; /* ← これが決定打 */
   }
 }
 
@@ -795,4 +796,5 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
