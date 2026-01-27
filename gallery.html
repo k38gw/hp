@@ -52,7 +52,7 @@
   white-space: nowrap;
 }
 
-/* --- ライトボックス --- */
+/* --- ライトボックス全体 --- */
 #lightbox {
   position: fixed;
   top: 0;
@@ -63,24 +63,31 @@
   justify-content: center;
   align-items: center;
   z-index: 999;
+
+  /* ダブルタップズーム無効化 & 背景の乱れ防止 */
+  touch-action: none;
 }
 
+/* --- コンテンツ（画像＋キャプション） --- */
 #lightbox-content {
   max-width: 90vw;
   max-height: 100dvh;
-  text-align: center;
-  position: relative;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  overflow: hidden; /* ← これを追加すると背景の乱れが減る */
 }
 
-/* 画像（縦画面・横画面共通） */
+/* --- 画像（ピンチズームは許可） --- */
 #lightbox-img {
   max-width: 100%;
   object-fit: contain;
+
+  /* ピンチズームだけ許可（背景はズームしない） */
+  touch-action: pinch-zoom;
 }
 
-/* キャプション（縦画面・横画面共通） */
+/* --- キャプション --- */
 #lightbox-caption {
   color: white;
   margin-top: 10px;
@@ -88,29 +95,19 @@
   overflow-y: auto;
 }
 
-/* 横画面：高さが十分ある場合（例：min-height 500px 以上） */
-@media (orientation: landscape) and (min-height: 500px) {
+/* --- 横画面：キャプションを重ねず、画像の高さを調整 --- */
+@media (orientation: landscape) {
   #lightbox-img {
     max-height: calc(100dvh - 12vh);
   }
+
   #lightbox-caption {
     max-height: 12vh;
-    margin-top: 10px; /* ← 普通の余白でOK */
+    margin-top: 10px;
   }
 }
 
-/* 横画面：高さが小さい場合（iPhone 横画面など） */
-@media (orientation: landscape) and (max-height: 499px) {
-  #lightbox-img {
-    max-height: calc(100dvh - 10vh);
-  }
-  #lightbox-caption {
-    max-height: 10vh;
-    margin-top: 4px; /* ← 少しだけ余白を減らす */
-  }
-}
-
-/* --- 縦画面：従来通りの最大高さ --- */
+/* --- 縦画面 --- */
 @media (orientation: portrait) {
   #lightbox-img {
     max-height: 88vh;
@@ -121,7 +118,7 @@
   }
 }
 
-/* --- 矢印 --- */
+/* --- 矢印ボタン --- */
 .nav-btn {
   position: fixed;
   top: 50%;
@@ -806,6 +803,7 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
 
