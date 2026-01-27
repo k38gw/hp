@@ -58,7 +58,6 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
       background: rgba(0, 0, 0, 0.8);
       display: none;
       justify-content: center;
@@ -732,6 +731,12 @@
     showImage();
   });
 
+  window.addEventListener("resize", () => {
+    if (lightbox.style.display === "flex") {
+      adjustLightboxHeight();
+    }
+  });
+  
 /* --- スワイプ操作（最小構成・誤動作しにくい） --- */
 let startX = 0;
 let startY = 0;
@@ -780,6 +785,7 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
 
