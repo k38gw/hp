@@ -65,11 +65,15 @@
       z-index: 999;
     }
 
-    #lightbox-content {
-      max-width: 90vw;
-      text-align: center;
-      position: relative;
-    }
+  #lightbox-content {
+    max-width: 90vw;
+    max-height: 100dvh; /* ← これが決定打 */
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   #lightbox-img {
     max-width: 100%;
@@ -785,6 +789,7 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
 
