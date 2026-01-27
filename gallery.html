@@ -68,17 +68,15 @@
 
     #lightbox-content {
       max-width: 90vw;
-      max-height: 90vh;
       text-align: center;
       position: relative;
     }
 
-    #lightbox-img {
-      max-width: 100%;
-      max-height: 80vh;
-      height: auto;
-      width: auto;
-    }
+  #lightbox-img {
+    max-width: 100%;
+    max-height: 100dvh; /* ← 実際の表示領域にフィット */
+    object-fit: contain;
+  }
 
     #lightbox-caption {
       color: white;
@@ -658,6 +656,22 @@
     });
   });
 
+  function adjustLightboxHeight() {
+    const h = window.innerHeight;
+    document.getElementById("lightbox").style.height = h + "px";
+  }
+
+  function lockScroll() {
+    const isLandscape = window.innerWidth > window.innerHeight;
+    if (!isLandscape) {
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function unlockScroll() {
+    document.body.style.overflow = "";
+  }
+  
   function showImage() {
     const fig = images[currentIndex].closest("figure");
     const cap = fig ? fig.querySelector("figcaption") : null;
@@ -666,17 +680,15 @@
     caption.textContent = cap ? cap.textContent : "";
 
     lightbox.style.display = "flex";
-    
-    /* 背景スクロール禁止 */
-    document.body.style.overflow = "hidden";
+    adjustLightboxHeight();
+    lockScroll();
   }
 
   /* 背景クリックで閉じる（矢印や画像では閉じない） */
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
       lightbox.style.display = "none";
-    /* 背景スクロール解除 */
-    document.body.style.overflow = "";
+      unlockScroll();
     }
   });
 
@@ -694,7 +706,7 @@
     }
     if (e.key === "Escape") {
       lightbox.style.display = "none";
-      document.body.style.overflow = "";
+      unlockScroll();
     }
   });
 
@@ -766,5 +778,6 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
