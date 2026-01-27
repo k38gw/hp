@@ -657,10 +657,12 @@
   });
 
   function adjustLightboxHeight() {
-    const h = window.innerHeight;
-    document.getElementById("lightbox").style.height = h + "px";
+    setTimeout(() => {
+      const h = window.innerHeight;
+      document.getElementById("lightbox").style.height = h + "px";
+    }, 150); // ← 100〜200ms が最適
   }
-
+  
   function lockScroll() {
     const isLandscape = window.innerWidth > window.innerHeight;
     if (!isLandscape) {
@@ -778,6 +780,7 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
 
