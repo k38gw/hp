@@ -65,7 +65,8 @@
   z-index: 999;
 
   /* ダブルタップズーム無効化 & 背景の乱れ防止 */
-  touch-action: none;
+  touch-action: manipulation; /* ← ダブルタップズーム無効、ピンチズームは許可 */
+  overscroll-behavior: none; /* ← 追加 */
 }
 
 /* --- コンテンツ（画像＋キャプション） --- */
@@ -81,6 +82,7 @@
 /* --- 画像（ピンチズームは許可） --- */
 #lightbox-img {
   max-width: 100%;
+  max-height: 100dvh; /* ← 追加 */
   object-fit: contain;
 
   /* ピンチズームだけ許可（背景はズームしない） */
@@ -803,6 +805,7 @@ lightboxImg.addEventListener("touchend", (e) => {
 
 </body>
 </html>
+
 
 
 
